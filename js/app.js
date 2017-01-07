@@ -1,9 +1,11 @@
 $(function(){
+	// These variables are initialized at the beginning, all but masterDrinkList will be reinialized below, since that doesn't change.
 	var masterDrinkList = [];
 	var masterPantry = [];
 	var answered = 0;
 	var drink = '';
 
+	// Reinitializes the above variables to ensure that they are blank for starting a new drink.
 	var initialize = function(){
 		masterPantry = [];
 		answered = 0;
@@ -12,18 +14,23 @@ $(function(){
 		$('.answers').html('<li class="yes">Yarr</li><li class="no">No, that be for the dogs o\' the sea!</li>')
 	}
 
+	// This is the Constructor Function which creates each drinktype (salty, strong, etc.) It will eventually build a PantryItem if this is chosen as something they like by the user.
 	var DrinkType = function(question, ingredients) {
 		this.question = question;
 		this.ingredients = ingredients;
+		// Used to build the quesetion that the bartender is asking.
 		this.addQuestion = function(){
 			$('.question').text(question);
 		};
+		// Will be used to add this type of drink into the pantry later.
 		this.addPantry = function(){
 			PantryItem.call(this, this.ingredients)
 		};
+		// Pushes the DrinkType to the masterDrinkList in order to easily access and track the drinks
 		masterDrinkList.push(this)
 	};
 
+	// Inherits much of it's functionality from the DrinkType and adds in the ability to add an ingredient to the drink
 	var PantryItem = function(){
 		this.buildDrink = function(num){
 			var ingredient = this.ingredients[Math.floor(Math.random()*(this.ingredients.length) - 0)];
@@ -35,9 +42,10 @@ $(function(){
 				drink += ', ' + ingredient;
 			}
 		}
+		// Pushes this PantryItem to the masterPantry array for easy tracking and control
 		masterPantry.push(this)
 	};
-
+	// Builds the DrinkTypes
 	var strong = new DrinkType('Do ye like yer drinks strong?', 
 		['glug of rum', 'slug of whisky', 'splash of gin'])
 	var salty = new DrinkType('Do ye like it with a salty tang?', 
@@ -49,19 +57,26 @@ $(function(){
 	var fruity = new DrinkType('Are ye one for a fruity finish?',
 		['slice of orange', 'dash of cassis', 'cherry on top']);
 
+	// Calls the initiliaize function to make sure everything is correct to start
 	initialize();
 	
+	// On someone clicking one of the LI options
 	$('.answers').on('click', 'li', function(event){
 		event.preventDefault();
-		if ($(this).text() == 'Arr! Ye have fantastic taste! Another!' || $(this).text() == 'Oh, good point! Let\'s try again!'){
+		// check to see what type of message is showing
+		if ($(this).text() == 'Arr! Ye have fantastic taste! Another!' || $(this).text() == 'Oh, jolly point! Let\'s give a go\' again!'){
+			// If it's a restart option, rerun the initialize function
 			initialize();
 		} else {
-			if (answered < masterDrinkList.length) {
-				if ($(this).text() == 'Yarr') {
-					masterDrinkList[answered].addPantry();
-				};
+			// if this is chosen as a valid option
+			if ($(this).text() == 'Yarr') {
+				// add it to the pantry
+				masterDrinkList[answered].addPantry();
+			};
+			// build the next question
+			answered++;
+			if(answered <= masterDrinkList.length - 1){
 				masterDrinkList[answered].addQuestion();
-				answered++;
 			} else {
 				for(var i = 0; i < masterPantry.length; i++) {
 					masterPantry[i].buildDrink(i);
