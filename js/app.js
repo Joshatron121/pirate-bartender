@@ -4,6 +4,13 @@ $(function(){
 	var answered = 0;
 	var drink = '';
 
+	var initialize = function(){
+		masterPantry = [];
+		answered = 0;
+		drink = '';
+		masterDrinkList[0].addQuestion();
+	}
+
 	var DrinkType = function(question, ingredients) {
 		this.question = question;
 		this.ingredients = ingredients;
@@ -43,50 +50,30 @@ $(function(){
 	var fruity = new DrinkType('Are ye one for a fruity finish?',
 		['slice of orange', 'dash of cassis', 'cherry on top']);
 
-	masterDrinkList[0].addQuestion();
+	initialize();
+	
 	$('.submit').click(function(event){
 		event.preventDefault();
-		if (answered < masterDrinkList.length - 1) {
-			var response = $('input[name="yesorno"]:checked').val();
-			if (response === 'yes') {
-				masterDrinkList[answered].addPantry();
-			};
-			answered++;
-			masterDrinkList[answered].addQuestion();
-		} else {
-			for(var i = 0; i < masterPantry.length; i++) {
-				masterPantry[i].buildDrink(i);
+		if ($('.submit').text() == 'Submit'){
+			if (answered < masterDrinkList.length - 1) {
+				var response = $('input[name="yesorno"]:checked').val();
+				if (response === 'yes') {
+					masterDrinkList[answered].addPantry();
+				};
+				answered++;
+				masterDrinkList[answered].addQuestion();
+			} else {
+				for(var i = 0; i < masterPantry.length; i++) {
+					masterPantry[i].buildDrink(i);
+				}
+				$('.answers').hide();
+				$('.submit').text('Another!');
+				$('.question').text('Here\'s your drink. I got you a ' + drink + '!')
 			}
-			$('.answers').hide();
-			$('.submit').text('Another!');
-			$('.question').text('Here\'s your drink. I got you a ' + drink + '!')
+		} else {
+			initialize();
+			$('.answers').show();
+			$('.submit').text('Submit');
 		}
 	})
 })
-
-// $(function(){
-// 	var questions = {
-// 		strong: {
-// 			question: 'Do ye like yer drinks strong?',
-// 			ingredients: ['glug of rum', 'slug of whisky', 'splash of gin']
-// 		},
-// 		salty: {
-// 			question: 'Do ye like it with a salty tang?',
-// 			ingredients: ['olive on a stick', 'salt-dusted rim', 'rasher of bacon']
-// 		},2
-// 		bitter: {
-// 			question: 'Are ye a lubber who likes it bitter?',
-// 			ingredients: ['shake of bitters', 'splash of tonic', 'twist of lemon peel']
-// 		},
-// 		sweet: {
-// 			question: 'Would ye like a bit of sweetness with yer poison?',
-// 			ingredients: ['sugar cube', 'spoonful of honey', 'splash of cola']
-// 		},
-// 		fruity: {
-// 			question: 'Are ye one for a fruity finish?',
-// 			ingredients: ['slice of orange', 'dash of cassis', 'cherry on top']
-// 		}
-// 	}
-
-
-// })

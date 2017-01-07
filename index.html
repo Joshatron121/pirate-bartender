@@ -10,24 +10,55 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<header class="row">
-		<h1>The Pirate Bartender</h1>
+	<header>
+		<div class="row">
+			<div class="col-12">
+				<h1>The Pirate Bartender</h1>
+			</div>
+		</div>
 	</header>
-	<main class="row">
-		<section class="row">
-			<h3 class="question"></h3>
-			<ul class="answers">
-				<li><input type="radio" name="yesorno" value="yes">Yarr</li>
-				<li><input type="radio" name="yesorno" value="no">No, that be for the dogs o' the sea!</li>
-			</ul>
-			<button class="submit">Submit</button>
+	<main>
+		<section>
+			<div class="row">
+				<div class="col-12 main_screen">
+					<div class="row">
+						<div class="col-1 bartender">
+							<img src="images/bartender_image.png">
+						</div>
+						<div class="col-8 question_field">
+							<h3 class="question"></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">&nbsp;</div>
+						<div class="col-6 answers_field">
+							<ul class="answers">
+								<li><input type="radio" name="yesorno" value="yes">Yarr</li>
+								<li><input type="radio" name="yesorno" value="no">No, that be for the dogs o' the sea!</li>
+							</ul>
+							<button class="submit">Submit</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-8">
+						&nbsp;
+						</div>
+						<div class="col-4 user">
+						<img src="images/backofhead_image.png">
+						</div>
+					</div>
+				</div>
+			</div>
 		</section>
 	</main>
-	<footer class="row">
-		<p>Pirate Bartender Project for Thinkful</p>
+	<footer>
+		<div class="row">
+			<div class="col-12">
+				<p>Pirate Bartender Project for Thinkful</p>
+			</div>
+		</div>
 	</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 	<script src="js/app.js"></script>
 </body>
 </html>
