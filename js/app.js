@@ -3,16 +3,6 @@ $(function(){
 	var masterPantry = [];
 	var answered = 0;
 	var drink = '';
-	var PantryItem = function(ingredients){
-		ingredients = ingredients
-		this.buildDrink = function(){
-			if (drink === '') {
-				drink += this.ingredients[Math.floor(Math.random()*(this.ingredients.length) - 0)];
-			} else {
-			}
-			console.log(drink)
-		}
-	};
 
 	var DrinkType = function(question, ingredients) {
 		this.question = question;
@@ -24,6 +14,22 @@ $(function(){
 			PantryItem.call(this, this.ingredients)
 		};
 		masterDrinkList.push(this)
+	};
+
+	var PantryItem = function(){
+		this.buildDrink = function(num){
+			var ingredient = this.ingredients[Math.floor(Math.random()*(this.ingredients.length) - 0)];
+			console.log(num, masterPantry.length)
+			if (drink === '') {
+				drink += ingredient;
+			} else if (num == masterPantry.length - 1) {
+				drink += ', and a ' + ingredient;
+			} else if (num < masterPantry.length) {
+				drink += ', ' + ingredient;
+			}
+			console.log(drink)
+		}
+		masterPantry.push(this)
 	};
 
 	var strong = new DrinkType('Do ye like yer drinks strong?', 
@@ -38,21 +44,22 @@ $(function(){
 		['slice of orange', 'dash of cassis', 'cherry on top']);
 
 	masterDrinkList[0].addQuestion();
-
 	$('.submit').click(function(event){
 		event.preventDefault();
-		if(answered <= masterDrinkList.length){
+		if (answered < masterDrinkList.length - 1) {
 			var response = $('input[name="yesorno"]:checked').val();
-			if(response === 'yes') {
-				masterPantry.push(masterDrinkList[answered].addPantry()
-				}
+			if (response === 'yes') {
+				masterDrinkList[answered].addPantry();
 			};
 			answered++;
-			
 			masterDrinkList[answered].addQuestion();
 		} else {
+			for(var i = 0; i < masterPantry.length; i++) {
+				masterPantry[i].buildDrink(i);
+			}
 			$('.answers').hide();
-			$('.question').text('Here\'s your drink! I got you a')
+			$('.submit').text('Another!');
+			$('.question').text('Here\'s your drink. I got you a ' + drink + '!')
 		}
 	})
 })
