@@ -1,0 +1,154 @@
+body {
+	min-width: 1000px;
+}
+
+header {
+	text-align: center;
+}
+
+footer {
+	margin-top: 20px;
+	text-align: center;
+}
+
+li {
+	padding: 5px;
+	margin: 2.5px;
+	margin-right: 20px;
+	border-radius: 5px;
+}
+
+.main_screen {
+	border: 3px solid black;
+	height: 500px;
+	background-image: url('../images/barbackground_image.jpg');
+	background-size: 100%;
+}
+
+.question, .submit {
+	margin-bottom: 5px;
+}
+
+.bartender img {
+    clip: rect(auto, auto, 361px, auto);
+	top: 215px;
+	display: inline-block;
+	position: absolute;
+	-moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    box-shadow: 20px;
+}
+
+.user img {
+	position: absolute;
+	display: block;
+	top: 300px;
+	margin-left: 25px;
+	clip: rect(auto, 294px, 278px, auto);
+}
+
+h3.question {
+	position: relative;
+	height: 100px;
+	padding: 10px;
+	text-align: center;
+	background-color: #fff;
+	border: 8px solid #666;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	-webkit-box-shadow: 2px 2px 4px #888;
+	-moz-box-shadow: 2px 2px 4px #888;
+	box-shadow: 2px 2px 4px #888;
+}
+
+h3.question:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 100px;
+  top: 90px;
+  border: 25px solid;
+  border-color: #666 transparent transparent #666;
+}
+
+h3.question:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 108px;
+  top: 80px;
+  border: 20px solid;
+  border-color: #fff transparent transparent #fff;
+}
+
+div.answers_field {
+	padding: 10px;
+	display: block;
+	width: 425px;
+	z-index: 100;
+	position: relative;
+	height: 120px;
+	background-color: #fff;
+	border: 8px solid #666;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	-webkit-box-shadow: 2px 2px 4px #888;
+	-moz-box-shadow: 2px 2px 4px #888;
+	box-shadow: 2px 2px 4px #888;
+}
+
+div.answers_field:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 300px;
+  top: 110px;
+  border: 25px solid;
+  border-color: #666 #666 transparent transparent;
+}
+
+div.answers_field:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 302px;
+  top: 100px;
+  border: 20px solid;
+  border-color: #fff #fff transparent transparent;
+}
+
+.answers {
+	margin-bottom: 5px;
+	list-style: none;
+	padding-left: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.question_field {
+	margin: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.yes {
+	background-color: lightgreen;
+}
+
+.no {
+	background-color: red;
+}
+
+.done {
+	background-color: lightblue;
+}
