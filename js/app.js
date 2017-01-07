@@ -73,7 +73,7 @@ $(function(){
 				// add it to the pantry
 				masterDrinkList[answered].addPantry();
 			};
-			// build the next question
+			// increment answered and build the next question or, if all questions answered build the drink and change the text to show that drink
 			answered++;
 			if(answered <= masterDrinkList.length - 1){
 				masterDrinkList[answered].addQuestion();
