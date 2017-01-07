@@ -9,6 +9,7 @@ $(function(){
 		answered = 0;
 		drink = '';
 		masterDrinkList[0].addQuestion();
+		$('.answers').html('<li class="yes">Yarr</li><li class="no">No, that be for the dogs o\' the sea!</li>')
 	}
 
 	var DrinkType = function(question, ingredients) {
@@ -26,7 +27,6 @@ $(function(){
 	var PantryItem = function(){
 		this.buildDrink = function(num){
 			var ingredient = this.ingredients[Math.floor(Math.random()*(this.ingredients.length) - 0)];
-			console.log(num, masterPantry.length)
 			if (drink === '') {
 				drink += ingredient;
 			} else if (num == masterPantry.length - 1) {
@@ -34,7 +34,6 @@ $(function(){
 			} else if (num < masterPantry.length) {
 				drink += ', ' + ingredient;
 			}
-			console.log(drink)
 		}
 		masterPantry.push(this)
 	};
@@ -52,28 +51,29 @@ $(function(){
 
 	initialize();
 	
-	$('.submit').click(function(event){
+	$('.answers').on('click', 'li', function(event){
 		event.preventDefault();
-		if ($('.submit').text() == 'Submit'){
-			if (answered < masterDrinkList.length - 1) {
-				var response = $('input[name="yesorno"]:checked').val();
-				if (response === 'yes') {
+		if ($(this).text() == 'Arr! Ye have fantastic taste! Another!' || $(this).text() == 'Oh, good point! Let\'s try again!'){
+			initialize();
+		} else {
+			if (answered < masterDrinkList.length) {
+				if ($(this).text() == 'Yarr') {
 					masterDrinkList[answered].addPantry();
 				};
-				answered++;
 				masterDrinkList[answered].addQuestion();
+				answered++;
 			} else {
 				for(var i = 0; i < masterPantry.length; i++) {
 					masterPantry[i].buildDrink(i);
 				}
-				$('.answers').hide();
-				$('.submit').text('Another!');
-				$('.question').text('Here\'s your drink. I got you a ' + drink + '!')
+				if(drink == '') {
+					$('.question').text('Ye have to choose somethin\' or I ain\'t make ye any grog!');
+					$('.answers').html('<li class="done">Oh, jolly point! Let\'s give a go\' again!</li>');
+				} else {
+					$('.answers').html('<li class="done">Arr! Ye have fantastic taste! Another!</li>');
+					$('.question').text('Here\'s ye drink. I got ye a ' + drink + '!')
+				}
 			}
-		} else {
-			initialize();
-			$('.answers').show();
-			$('.submit').text('Submit');
 		}
 	})
 })

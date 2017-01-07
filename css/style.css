@@ -6,15 +6,23 @@ header {
 	text-align: center;
 }
 
-.main_screen {
-	border: 3px solid black;
-	/*border-radius: 20px;*/
-	height: 500px;
-}
-
 footer {
 	margin-top: 20px;
 	text-align: center;
+}
+
+li {
+	padding: 5px;
+	margin: 2.5px;
+	margin-right: 20px;
+	border-radius: 5px;
+}
+
+.main_screen {
+	border: 3px solid black;
+	height: 500px;
+	background-image: url('../images/barbackground_image.jpg');
+	background-size: 100%;
 }
 
 .question, .submit {
@@ -32,6 +40,7 @@ footer {
     transform: scaleX(-1);
     filter: FlipH;
     -ms-filter: "FlipH";
+    box-shadow: 20px;
 }
 
 .user img {
@@ -45,8 +54,8 @@ footer {
 h3.question {
 	position: relative;
 	height: 100px;
+	padding: 10px;
 	text-align: center;
-	line-height: 100px;
 	background-color: #fff;
 	border: 8px solid #666;
 	-webkit-border-radius: 30px;
@@ -77,15 +86,6 @@ h3.question:after {
   top: 80px;
   border: 20px solid;
   border-color: #fff transparent transparent #fff;
-}
-
-.answers {
-	margin-top: 5px;
-	margin-bottom: 5px;
-	list-style: none;
-	margin-left: none;
-	padding-left: 10px;
-
 }
 
 div.answers_field {
@@ -128,22 +128,27 @@ div.answers_field:after {
 }
 
 .answers {
+	margin-bottom: 5px;
+	list-style: none;
+	padding-left: 10px;
 	margin-left: 10px;
 	margin-top: 10px;
-}
-
-input[type="radio"] {
-	margin-right: 10px;
-}
-
-.submit {
-	padding-top: 5px;
-	margin-top: 5px;
-	margin-left: 20px;
 }
 
 .question_field {
 	margin: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.yes {
+	background-color: lightgreen;
+}
+
+.no {
+	background-color: red;
+}
+
+.done {
+	background-color: lightblue;
 }
